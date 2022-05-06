@@ -21,10 +21,10 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
+            // A surface container using the 'background' color from the theme
             Surface(
-            //    color = MaterialTheme.colors.primarySurface,
-                color = Color.Green,
-                modifier = Modifier.fillMaxSize()
+                modifier = Modifier.fillMaxSize(),
+                color = Color.Green
             ) {
                 MainScreen()
 
@@ -33,100 +33,49 @@ class MainActivity : ComponentActivity() {
     }
 }
 
+@Composable
+fun ButtonUI(name: String) {
+    Button(
+        onClick = {},
+        Modifier.padding(20.dp),
+        shape = RoundedCornerShape(20.dp),
+        border = BorderStroke(3.dp, Color.Black),
+        colors = ButtonDefaults.buttonColors(
+            contentColor = Color.Black,
+            backgroundColor = Color.Red
+        )
+    ) {
+        Text(text = "$name")
+    }
+}
 
 @Composable
 fun MainScreen() {
-     Row(
+    Row(
         verticalAlignment = Alignment.Bottom,
         horizontalArrangement = Arrangement.SpaceEvenly,
-        modifier = Modifier.size(width = 800.dp, height = 600.dp)) {
-
+        modifier = Modifier.size(width = 800.dp, height = 600.dp)
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-            Button(
-                onClick = {},
-                Modifier.padding(20.dp),
-                shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(3.dp, Color.Black),
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = Color.Black,
-                    backgroundColor = Color.Red
-                    )
-                ) {
-                Text(text = "UpperBody")
-                }
-            Button(
-                onClick = {},
-                Modifier.padding(20.dp),
-                shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(3.dp, Color.Black),
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = Color.Black,
-                    backgroundColor = Color.Red
-                    )
-                ) {
-                Text(text = "Abs")
-                }
-            Button(
-                onClick = {},
-                Modifier.padding(20.dp),
-                shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(3.dp, Color.Black),
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = Color.Black,
-                    backgroundColor = Color.Red
-                    )
-                ) {
-                Text(text = "Balance")
-                }
-            }
+        ) {
+            ButtonUI("Upper Body")
+            ButtonUI("Lower Body")
+            ButtonUI("Abs")
 
+        }
         Column(
-                horizontalAlignment = Alignment.CenterHorizontally
-            ) {
-            Button(
-                onClick = {},
-                Modifier.padding(20.dp),
-                shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(3.dp, Color.Black),
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = Color.Black,
-                    backgroundColor = Color.Red
-                    )
-                ) {
-                Text(text = "Lower Body")
-                }
-            Button(
-                onClick = {},
-                Modifier.padding(20.dp),
-                shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(3.dp, Color.Black),
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = Color.Black,
-                    backgroundColor = Color.Red
-                    )
-                ) {
-                Text(text = "Cardio")
-                }
-            Button(
-                onClick = {},
-                Modifier.padding(20.dp),
-                shape = RoundedCornerShape(20.dp),
-                border = BorderStroke(3.dp, Color.Black),
-                colors = ButtonDefaults.buttonColors(
-                    contentColor = Color.Black,
-                    backgroundColor = Color.Red
-                    )
-                ) {
-                Text(text = "Other ")
-                }
-            }
+            horizontalAlignment = Alignment.CenterHorizontally
+        ) {
+            ButtonUI("Cardio")
+            ButtonUI("Balance")
+            ButtonUI("Other")
         }
     }
+}
 
 @Preview(showBackground = true)
 @Composable
-fun DefaultPreview() {
+fun DefaultMainScreenPreview() {
     MainScreen()
 }
